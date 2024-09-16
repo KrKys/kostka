@@ -2,7 +2,7 @@
 {
     public partial class MainPage : ContentPage
     {
- 
+
 
         public MainPage()
         {
@@ -17,7 +17,8 @@
             {
                 diceRoll = r.Next(1, 5);
             }
-            if (K6.IsChecked) {
+            if (K6.IsChecked)
+            {
                 diceRoll = r.Next(1, 7);
             }
             if (K10.IsChecked)
@@ -29,8 +30,17 @@
                 diceRoll = r.Next(1, 13);
             }
             RollLabel.Text = "Wynik rzutu: " + diceRoll.ToString();
-        
-        }
-    }
 
+        }
+
+        private void CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            int maxRoll = int.Parse((string)rb.Value);
+            string fileName = "k" + maxRoll + ".jpg";
+            DiceImage.Source = fileName;
+            RollLabel.Text = string.Empty;
+        }
+
+    }
 }
